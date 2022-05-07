@@ -1,0 +1,16 @@
+version: "3.3"
+
+services:
+    server:
+        command: yarn dev
+        build:
+            context: .
+            dockerfile: Dockerfile
+        restart: on-failure
+        volumes:
+            - ./:/usr/app
+            - /usr/app/node_modules
+        ports:
+            - "${SERVER_PORT}:3000"
+            - "${SERVER_PORT_HTTPS}:3443"
+        env_file: .env
